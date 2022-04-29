@@ -1,0 +1,27 @@
+.navbar{
+
+    .navbar-brand{
+        color: var(--black-font);
+        
+        span{
+            font-weight: 600;
+            font-size: 24px;
+        }
+    }
+
+    .navbar-nav{
+
+        .nav-link{
+            color: var(--black-font);
+            font-size: 18px;
+            padding: 0.2rem 0.8rem;
+            font-weight: 400;
+            margin-right: 0.5rem;
+            &:hover{
+                background-color: var(--bg-color-asphalt);
+                color: var(--white-font);
+                border-radius: 5px;
+            }
+        }
+    }
+}

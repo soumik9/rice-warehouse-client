@@ -1,0 +1,25 @@
+.nav__top{
+    background-color: var(--bg-color-asphalt);
+    font-size: 14px;
+
+    .breadcrumb__items{
+       gap: 10px;
+       flex-wrap: wrap;
+       line-height: 27px;
+
+       a{
+           color: var(--gray-font);
+           font-weight: 400;
+
+           &:hover{
+                color: var(--white-font);
+                transition: all .50s ease-in-out;
+           }
+          
+           .nav__top-icon{
+               position: relative;
+               top: -2px;
+           }
+       }
+    }
+}
