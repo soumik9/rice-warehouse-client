@@ -1,11 +1,13 @@
 import React from 'react';
 import Banner from '../../components/Banner/Banner';
+import ChooseUs from '../../components/ChooseUs/ChooseUs';
 
 const Home = () => {
     return (
-        <div>
+        <main>
           <Banner />
-        </div>
+          <ChooseUs />
+        </main>
     );
 };
 
