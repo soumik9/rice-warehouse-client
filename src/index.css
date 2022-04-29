@@ -8,6 +8,17 @@ ul{
   list-style: none;
 }
 
+a{
+  text-decoration: none !important;
+}
+
 :root {
   --main-color: #1e90ff;
+
+  --bg-color-asphalt: #34495e;
+
+  --hover-color: #ff4757;
+  --black-font: #2f3542;
+  --white-font: #f5f6fa;
+
 }

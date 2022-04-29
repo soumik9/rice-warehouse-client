@@ -1,12 +1,28 @@
 nav{
     
     .nav__top{
-        background-color: #F8F8F8;
-        font-size: .875em;
+        background-color: var(--bg-color-asphalt);
+        font-size: 14px;
 
         .breadcrumb__items{
            gap: 10px;
            flex-wrap: wrap;
+           line-height: 27px;
+
+           a{
+               color: var(--white-font);
+               font-weight: 400;
+
+               &:hover{
+                   color: #ff4757;
+                   transition: all .50s ease-in-out;
+               }
+              
+               .nav__top-icon{
+                   position: relative;
+                   top: -2px;
+               }
+           }
         }
     }
 }
