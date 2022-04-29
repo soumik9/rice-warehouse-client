@@ -1,0 +1,38 @@
+.banner{
+    background: url('../../assets/images/bann.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    height: 500px;
+    color: var(--white-font);
+
+    .banner__container{
+        padding: 150px 0 0;
+
+        h5{
+            margin: 25px 0 25px 3px;
+        }
+
+        button{
+            background-color: var(--bg-color-boyzone);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            font-size: 18px;
+            border-radius: 5px;
+
+            &:hover{
+                background-color: var(--hover-color);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .banner{
+        height: 300px;
+
+        .banner__container{
+            padding: 60px 0 0;
+        }
+    }
+}

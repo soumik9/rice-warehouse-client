@@ -1,5 +1,5 @@
 body{
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 ul{
@@ -16,6 +16,9 @@ a{
   --main-color: #1e90ff;
 
   --bg-color-asphalt: #34495e;
+  --bg-color-boyzone: #2d98da;
+
+  --hover-color: #00a8ff;
 
   --black-font: #2f3542;
   --white-font: #f5f6fa;
