@@ -15,7 +15,7 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onLoginSubmit = (data) => console.log(data);
 
     return (
         <section className='form login'>
@@ -36,7 +36,7 @@ const Login = () => {
                                     <h3>Welcome Rice WareHouse</h3>
                                 </div>
 
-                                <form onSubmit={handleSubmit(onSubmit)}>
+                                <form onSubmit={handleSubmit(onLoginSubmit)}>
 
                                     <div className="mb-4">
                                         <FloatingLabel controlId="eamil" label="Email address*"  >
@@ -58,7 +58,7 @@ const Login = () => {
                                             label="Remember Me"
                                             name="remember"
                                             type='checkbox'
-                                            id=''
+                                            id='remember'
                                         />
                                     </div>
 
