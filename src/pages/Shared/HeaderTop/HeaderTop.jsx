@@ -3,7 +3,7 @@ import { AiOutlineHeart, AiFillFolderOpen, AiOutlineGlobal, AiTwotoneUnlock } fr
 import { BiLogIn } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
 import { Col, Container, Row } from 'react-bootstrap'
-import './headerTop.scss'
+import './headertop.scss'
 
 const HeaderTop = () => {
     return (
