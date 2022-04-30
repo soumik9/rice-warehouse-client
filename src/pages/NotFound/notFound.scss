@@ -1,0 +1,28 @@
+.not__found{
+   
+    .not__found__container{
+        padding: 60px 0;
+
+        a{
+            padding: 0.7rem 1.5rem;
+            letter-spacing: 1px;
+            color: var(--gray-font);
+            text-transform: uppercase;
+            border-radius: 25px;
+            border: 1px solid var(--bg-color-asphalt);
+            background-color: var(--hover-tarkish);
+    
+            &:hover{
+                color: var(--black-font);
+                background-color: transparent;
+                transition: all .3s ease-in-out;
+            }
+    
+            .not__found-icon{
+                position: relative;
+                top: -2px;
+                margin-left: 1px;
+            }
+        }
+    }
+}
