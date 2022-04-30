@@ -4,6 +4,7 @@ import { BiLogIn } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
 import { Col, Container, Row } from 'react-bootstrap'
 import './headertop.scss'
+import { Link } from 'react-router-dom';
 
 const HeaderTop = () => {
     return (
@@ -27,7 +28,7 @@ const HeaderTop = () => {
                         <Col lg={5} md={6} sm={12}>
                             <ul className="breadcrumb__items d-flex justify-content-md-end justify-content-center mt-2 mt-md-0 align-items-center">
                                 <li className='breadcrumb__item me-3'>
-                                    <a href="#home"><BiLogIn className='nav__top-icon' /> Log In</a>
+                                    <Link to="/login"><BiLogIn className='nav__top-icon' /> Log In</Link>
                                 </li>
                                 <li className='breadcrumb__item me-3'>
                                     <a href="#home"><AiTwotoneUnlock className='nav__top-icon' /> Register</a>

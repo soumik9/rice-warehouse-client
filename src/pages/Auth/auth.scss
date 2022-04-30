@@ -1,0 +1,100 @@
+.form{
+    background: linear-gradient(90deg, rgba(45,152,218,1) 50%, #fff 50%);
+
+    .form__container{
+        padding: 120px 0 150px;
+
+        .main__form{
+
+            .main__form-header {
+
+                h3{
+                    color: var(--hover-tarkish);
+                }
+            }
+
+            form{
+                p{
+                    margin: 0;
+                }
+    
+                .form-check-input:checked {
+                    background-color: var(--hover-tarkish);
+                    border-color: var(--hover-tarkish);
+                }
+    
+                button{
+                    width: 100%;
+                    padding-top: 0.7rem;
+                    padding-bottom: 0.7rem;
+                    letter-spacing: 1px;
+                    color: var(--gray-font);
+                    text-transform: uppercase;
+                    border-radius: 25px;
+                    border: 1px solid var(--bg-color-asphalt);
+                    background-color: var(--hover-tarkish);
+    
+                    &:hover{
+                        color: var(--black-font);
+                        background-color: transparent;
+                        transition: all .3s ease-in-out;
+                    }
+    
+                    .form__btn-icon{
+                        position: relative;
+                        top: -2px;
+                    }
+                }
+            }
+
+            .form__detail{
+
+                a{
+                    color: var(--bg-color-boyzone);
+
+                    &:hover{
+                        color: var(--hover-color);
+                    }
+                }
+            }
+
+            .form__or{
+
+                hr, .or{
+                    color: var(--hover-tarkish);
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 992px) and (min-width: 578px){
+    .form{
+
+        .form__container{
+            
+            .main__form-header {
+
+                h3{
+                    font-size: 20px;
+                }
+            }
+
+            .form__detail{
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .form{
+        background: linear-gradient(0deg, #FFF 70%, rgba(45,152,218,1) 30%);
+    
+        .form__container{
+            padding: 50px 0 70px;
+        }
+    }
+}

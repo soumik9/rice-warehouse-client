@@ -1,0 +1,31 @@
+.form__socials {
+
+    button {
+        outline: none;
+        border: none;
+        background-color: white;
+
+        .form__socials-icon {
+            font-size: 48px;
+            padding: 1px;
+            border: 1px solid var(--hover-tarkish);
+
+            &:hover {
+                border: 2px solid var(--hover-tarkish);
+                border-radius: 5px;
+                transition: 0.5s ease-in-out;
+            }
+        }
+
+        .facebook__icon{
+            color: #4267B2;
+        }
+        
+        .twitter__icon{
+            position: relative;
+            top: -2px;
+            font-size: 50px;
+            color: #1DA1F2;
+        }
+    }
+}

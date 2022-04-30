@@ -20,12 +20,17 @@ a{
   padding: 100px 0;
 }
 
+.danger-text{
+  color: #833471;
+}
+
 :root {
 
   --bg-color-asphalt: #34495e;
   --bg-color-boyzone: #2d98da;
 
   --hover-color: #00a8ff;
+  --hover-tarkish: #006266;
 
   --black-font: #2f3542;
   --white-font: #f5f6fa;
