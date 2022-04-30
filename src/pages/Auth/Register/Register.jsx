@@ -17,7 +17,7 @@ const Register = () => {
     const onRegisterSubmit = (data) => console.log(data);
 
     return (
-        <section className='form login'>
+        <section className='form register'>
             <Container>
                 <div className="form__container">
                     <Row className='justify-content-between align-items-center'>
@@ -76,7 +76,7 @@ const Register = () => {
                                 <div className="form__detail mt-3 d-flex justify-content-center">
                                     <div>
                                         <p>Already have account <Link to="/login">Login here</Link></p>
-                                        <p className='text-center'>Forgot Password <Link to="/reset">Reset here</Link></p>
+                                        <p className='text-center'>Forgot Password <Link to="/reset-password">Reset here</Link></p>
                                     </div>
                                 </div>
 
