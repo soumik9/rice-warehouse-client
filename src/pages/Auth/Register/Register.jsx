@@ -4,17 +4,29 @@ import '../auth.scss'
 import { useForm } from 'react-hook-form';
 import authBanner from '../../../assets/images/auth-banner.png'
 import { RiLoginCircleLine } from 'react-icons/ri'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import toast from 'react-hot-toast';
 
 const Register = () => {
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-    const onRegisterSubmit = (data) => console.log(data);
+    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const [ createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true});
+    const [updateProfile] = useUpdateProfile(auth);
+    let navigate = useNavigate();
+
+    const onRegisterSubmit = async (data) => {
+        const {displayName, email, password} = data;
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName });
+        navigate('/');
+        toast.success('Successfully User created!', {
+            duration: 1000,
+            position: 'top-right',
+        });
+    };
 
     return (
         <section className='form register'>
@@ -39,7 +51,7 @@ const Register = () => {
 
                                     <div className="mb-4">
                                         <FloatingLabel controlId="name" label="Your Name*"  >
-                                            <Form.Control type="text" {...register('name', { required: true })} placeholder="Soumik Ahammed" />
+                                            <Form.Control type="text" {...register('displayName', { required: true })} placeholder="Soumik Ahammed" />
                                         </FloatingLabel>
                                         {errors.email && <p className='text-danger'>Name filed is required.</p>}
                                     </div>

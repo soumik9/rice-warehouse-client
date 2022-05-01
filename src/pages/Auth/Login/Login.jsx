@@ -4,18 +4,29 @@ import '../auth.scss'
 import { useForm } from 'react-hook-form';
 import authBanner from '../../../assets/images/auth-banner.png'
 import { RiLoginCircleLine } from 'react-icons/ri'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import auth from '../../../firebase.init';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 
 
 const Login = () => {
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-    const onLoginSubmit = (data) => console.log(data);
+    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const [ signInWithEmailAndPassword, user, loading, error, ] = useSignInWithEmailAndPassword(auth);
+    let navigate = useNavigate();
+
+
+    const onLoginSubmit = (data) => {
+        const {email, password} = data;
+        signInWithEmailAndPassword(email, password);
+        navigate('/');
+        toast.success('User Successfully Logged!', {
+            duration: 1000,
+            position: 'top-right',
+        });
+    }
 
     return (
         <section className='form login'>

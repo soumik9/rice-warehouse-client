@@ -7,6 +7,22 @@
        flex-wrap: wrap;
        line-height: 27px;
 
+       button{
+            background-color: var(--bg-color-boyzone);
+            color: white;
+            border-radius: 5px;
+
+            &:hover{
+                background-color: var(--hover-color);
+            }
+
+            .nav__top-icon{
+               font-size: 20px;
+               position: relative;
+               top: -2px;
+            }
+       }
+
        a{
            color: var(--gray-font);
            font-weight: 400;

@@ -2,11 +2,28 @@ import React from 'react';
 import { AiOutlineHeart, AiFillFolderOpen, AiOutlineGlobal, AiTwotoneUnlock } from 'react-icons/ai'
 import { BiLogIn } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import './headertop.scss'
 import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
+import auth from '../../../firebase.init';
+import toast from 'react-hot-toast';
+
 
 const HeaderTop = () => {
+
+    const [user] = useAuthState(auth);
+    console.log(user);
+
+    const logOut = () => {
+        signOut(auth);
+        toast.error('User Logged Out!', {
+            duration: 1000,
+            position: 'top-right',
+        });
+      };
+
     return (
         <section className="nav__top">
             <Container>
@@ -27,14 +44,26 @@ const HeaderTop = () => {
                         </Col>
                         <Col lg={5} md={6} sm={12}>
                             <ul className="breadcrumb__items d-flex justify-content-md-end justify-content-center mt-2 mt-md-0 align-items-center">
-                                <li className='breadcrumb__item me-3'>
-                                    <Link to="/login"><BiLogIn className='nav__top-icon' /> Log In</Link>
-                                </li>
-                                <li className='breadcrumb__item me-3'>
-                                    <a href="#home"><AiTwotoneUnlock className='nav__top-icon' /> Register</a>
-                                </li>
+                                {
+                                    user ?
+                                    <li className='breadcrumb__item me-3'>
+                                        <Button type='submit' onClick={ logOut }><BiLogIn className='nav__top-icon' /> SignOut</Button>
+                                    </li>
+                                    :
+                                    <li className='breadcrumb__item me-3'>
+                                        <Link to="/login"><BiLogIn className='nav__top-icon' /> Log In</Link>
+                                    </li>
+                                }
+
+                                {
+                                    !user &&    
+                                    <li className='breadcrumb__item me-3'>
+                                        <Link to="/register"><AiTwotoneUnlock className='nav__top-icon' /> Register</Link>
+                                    </li>
+                                }
+                              
                                 <li className='breadcrumb__item'>
-                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> Logged user name</a>
+                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? user.displayName : 'LoggIn Please'}</a>
                                 </li>
                             </ul>
                         </Col>
