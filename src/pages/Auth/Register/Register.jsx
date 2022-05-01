@@ -12,7 +12,7 @@ import toast from 'react-hot-toast';
 
 const Register = () => {
 
-    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const { register, handleSubmit, getValues, formState: { errors }, } = useForm();
     const [ createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true});
     const [updateProfile] = useUpdateProfile(auth);
     let navigate = useNavigate();
@@ -51,23 +51,24 @@ const Register = () => {
 
                                     <div className="mb-4">
                                         <FloatingLabel controlId="name" label="Your Name*"  >
-                                            <Form.Control type="text" {...register('displayName', { required: true })} placeholder="Soumik Ahammed" />
+                                            <Form.Control type="text" {...register('displayName', { required: "Name filed is required." })} placeholder="Soumik Ahammed" />
                                         </FloatingLabel>
-                                        {errors.email && <p className='text-danger'>Name filed is required.</p>}
+                                        {errors.displayName && <p className='text-danger'>{errors.displayName.message}</p>}
                                     </div>
 
                                     <div className="mb-4">
                                         <FloatingLabel controlId="eamil" label="Email address*"  >
-                                            <Form.Control type="email" {...register('email', { required: true })} placeholder="name@example.com" />
+                                            <Form.Control type="email" {...register('email', { required: "Email filed is required." })} placeholder="name@example.com" />
                                         </FloatingLabel>
-                                        {errors.email && <p className='text-danger'>Email filed is required.</p>}
+                                        {errors.email && <p className='text-danger'>{errors.email.message}</p>}
                                     </div>
 
                                     <div className="mb-4">
                                         <FloatingLabel controlId="password" label="Password*">
-                                            <Form.Control type="password" {...register('password', { required: true })} placeholder="Password" />
+                                            <Form.Control type="password" {...register('password', { required: "Password field is required.",  validate: { passLength: (value) => value.length > 5 } })} placeholder="Password" />
                                         </FloatingLabel>
-                                        {errors.password && <p className='text-danger'>Password field is required.</p>}
+                                        {errors.password && <p className='text-danger'>{errors.password.message} </p>}
+                                        {errors.password && errors.password.type === "passLength" && <p className='text-danger'>Password length is less than six.</p>}
                                     </div>
 
                                     <div className='mb-4 text-center'>

@@ -14,7 +14,6 @@ import toast from 'react-hot-toast';
 const HeaderTop = () => {
 
     const [user] = useAuthState(auth);
-    console.log(user);
 
     const logOut = () => {
         signOut(auth);
@@ -63,7 +62,7 @@ const HeaderTop = () => {
                                 }
                               
                                 <li className='breadcrumb__item'>
-                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? user.displayName : 'LoggIn Please'}</a>
+                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? user?.displayName : 'LoggIn Please'}</a>
                                 </li>
                             </ul>
                         </Col>

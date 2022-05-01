@@ -51,16 +51,16 @@ const Login = () => {
 
                                     <div className="mb-4">
                                         <FloatingLabel controlId="eamil" label="Email address*"  >
-                                            <Form.Control type="email" {...register('email', { required: true })} placeholder="name@example.com" />
+                                            <Form.Control type="email" {...register('email', { required: "Email filed is required." })} placeholder="name@example.com" />
                                         </FloatingLabel>
-                                        {errors.email && <p className='danger-text'>Email filed is required.</p>}
+                                        {errors.email && <p className='text-danger'>{ errors.email.message }</p>}
                                     </div>
 
                                     <div className="mb-4">
                                         <FloatingLabel controlId="password" label="Password*">
-                                            <Form.Control type="password" {...register('password', { required: true })} placeholder="Password" />
+                                            <Form.Control type="password" {...register('password', { required: "Password field is required." })} placeholder="Password" />
                                         </FloatingLabel>
-                                        {errors.password && <p className='danger-text'>Password field is required.</p>}
+                                        {errors.password && <p className='text-danger'>{ errors.password.message }</p>}
                                     </div>
 
                                     <div className='mb-4 text-center'>
