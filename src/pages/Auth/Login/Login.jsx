@@ -9,6 +9,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import auth from '../../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import toast from 'react-hot-toast';
+import Loading from '../../Shared/Loading/Loading';
 
 
 const Login = () => {
@@ -17,6 +18,7 @@ const Login = () => {
     const [ signInWithEmailAndPassword, user, loading, error, ] = useSignInWithEmailAndPassword(auth);
     let navigate = useNavigate();
 
+    if(loading){ return <Loading></Loading>}
 
     const onLoginSubmit = (data) => {
         const {email, password} = data;

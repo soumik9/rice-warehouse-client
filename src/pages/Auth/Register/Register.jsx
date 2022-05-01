@@ -9,6 +9,7 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import toast from 'react-hot-toast';
+import Loading from '../../Shared/Loading/Loading';
 
 const Register = () => {
 
@@ -16,6 +17,8 @@ const Register = () => {
     const [ createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true});
     const [updateProfile] = useUpdateProfile(auth);
     let navigate = useNavigate();
+
+    if(loading){ return <Loading></Loading>}
 
     const onRegisterSubmit = async (data) => {
         const {displayName, email, password} = data;
