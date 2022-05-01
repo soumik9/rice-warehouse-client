@@ -71,7 +71,7 @@ const Footer = () => {
                     </Row>
 
                     <div className="footer__foot__section text-center">
-                        <p>Copyright © Soumik Ahammed, 2022</p>
+                        <p>Copyright © Soumik Ahammed, {new Date().getFullYear()}</p>
                     </div>
                 </div>
             </Container>
