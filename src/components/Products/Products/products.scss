@@ -1,0 +1,115 @@
+.products{
+    padding: 100px 0 0px 0;
+
+    .products__container{
+
+        .products__header{
+
+            h1{
+                text-transform: uppercase;
+                color: var(--bg-color-boyzone);
+            }
+
+            small{
+                color: var(--gray-font);
+            }
+        }
+
+        .products__main{
+
+            .card{
+                position: relative;
+                min-height: 565px;
+
+                .product__img__container{
+                    border-bottom: 1px solid var(--bg-color-asphalt);
+                 
+
+                    .card-img-top{
+                        height: 300px;
+                        padding-bottom: 5px;
+                        transform: scale(0.8);
+
+                        &:hover{
+                            transform: scale(1);
+                            transition: all 2s ease-in-out;
+                        }
+                    }
+                   
+                }
+
+                .price{
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+
+                    h6{
+                        padding: 0.5rem 2rem;
+                        background-color: var(--bg-color-asphalt);
+                        color: var(--white-font);
+                        border-bottom-left-radius: 5px;
+                    }
+                }
+
+                .product__details{
+                   
+                    .card-title{
+                        color: var(--blue-font);
+
+                        &:hover{
+                            color: var(--hover-tarkish);
+                        }
+                    }
+
+                    .info{
+                        padding: 8px 0;
+                        border-top: 1px dotted var(--blue-font);
+                        border-bottom: 1px dotted var(--blue-font);
+
+                        h6{
+                            margin: 0;
+                            color: var(--blue-font);
+                            font-size: 16px;
+
+                            span{
+                                color: var(--bg-color-boyzone);
+                            }
+                        }
+                    }
+
+                    .card-text{
+                        text-align: justify;
+                    }
+
+                    button{
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        padding-top: 0.7rem;
+                        padding-bottom: 0.7rem;
+                        letter-spacing: 1px;
+                        color: var(--white-font);
+                        text-transform: uppercase;
+                        border-radius: 0;
+                        border: none;
+                        background-color: var(--hover-tarkish);
+        
+                        &:hover{
+                            color: var(--black-font);
+                            border: 1px solid var(--bg-color-asphalt);
+                            background-color: transparent;
+                            transition: all .3s ease-in-out;
+                        }
+        
+                        .product__btn-icon{
+                            font-size: 20px;
+                            position: relative;
+                            top: -2px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
