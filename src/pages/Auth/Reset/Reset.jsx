@@ -44,7 +44,7 @@ const Reset = () => {
                                         {errors.email && <p className='text-danger'>Email filed is required.</p>}
                                     </div>
 
-                                    <button type='submit' className='btn'>
+                                    <button type='submit' className='btn btn-tarkish'>
                                         Reset Password <RiLoginCircleLine className='form__btn-icon' /></button>
 
                                 </form>

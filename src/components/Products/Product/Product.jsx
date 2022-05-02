@@ -29,7 +29,7 @@ const Product = ({ product }) => {
                    
 
                         <Card.Text className='mt-3'> { description }</Card.Text>
-                        <Button variant="primary">Update <MdUpdate className='product__btn-icon' /></Button>
+                        <Button className='btn btn-tarkish'>Update <MdUpdate className='product__btn-icon' /></Button>
                     </div>
                 </Card.Body>
             </Card>

@@ -84,7 +84,7 @@ const Register = () => {
                                         />
                                     </div>
 
-                                    <button type='submit' className='btn'>
+                                    <button type='submit' className='btn btn-tarkish'>
                                         Register <RiLoginCircleLine className='form__btn-icon' /></button>
 
                                 </form>

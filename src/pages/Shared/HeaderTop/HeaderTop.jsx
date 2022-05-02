@@ -24,7 +24,7 @@ const HeaderTop = () => {
       };
 
     return (
-        <section className="nav__top">
+        <section className="nav__top" id='home'>
             <Container>
                 <div className="nav__top__container py-2">
                     <Row className='justify-content-md-between justify-content-center align-items-center'>
@@ -62,7 +62,7 @@ const HeaderTop = () => {
                                 }
                               
                                 <li className='breadcrumb__item'>
-                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? user?.displayName : 'LoggIn Please'}</a>
+                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? user?.displayName : 'Login Please'}</a>
                                 </li>
                             </ul>
                         </Col>

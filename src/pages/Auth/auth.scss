@@ -25,20 +25,7 @@
     
                 button{
                     width: 100%;
-                    padding-top: 0.7rem;
-                    padding-bottom: 0.7rem;
-                    letter-spacing: 1px;
-                    color: var(--gray-font);
-                    text-transform: uppercase;
                     border-radius: 25px;
-                    border: 1px solid var(--bg-color-asphalt);
-                    background-color: var(--hover-tarkish);
-    
-                    &:hover{
-                        color: var(--black-font);
-                        background-color: transparent;
-                        transition: all .3s ease-in-out;
-                    }
     
                     .form__btn-icon{
                         position: relative;

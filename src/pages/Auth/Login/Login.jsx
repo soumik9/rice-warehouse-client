@@ -75,7 +75,7 @@ const Login = () => {
                                         />
                                     </div>
 
-                                    <button type='submit' className='btn'>
+                                    <button type='submit' className='btn btn-tarkish'>
                                         Login <RiLoginCircleLine className='form__btn-icon' /></button>
 
                                 </form>

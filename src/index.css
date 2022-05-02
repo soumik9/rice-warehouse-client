@@ -2,30 +2,8 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 
-ul{
-  padding: 0 !important;
-  margin:  0 !important;
-  list-style: none;
-}
-
-a{
-  text-decoration: none !important;
-}
-
-.py-50{
-  padding: 50px 0;
-}
-
-.py-100{
-  padding: 100px 0;
-}
-
-.danger-text{
-  color: #833471;
-}
 
 :root {
-
   --bg-color-asphalt: #34495e;
   --bg-color-boyzone: #2d98da;
 
@@ -37,4 +15,32 @@ a{
   --gray-font: #c8d6e5;
   --blue-font: #273c75;
 
+}
+
+ul{
+  padding: 0 !important;
+  margin:  0 !important;
+  list-style: none;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+
+
+.btn-tarkish{
+  padding-top: 0.7rem !important;
+  padding-bottom: 0.7rem !important;
+  letter-spacing: 1px;
+  color: var(--white-font) !important;
+  text-transform: uppercase;
+  background-color: var(--hover-tarkish) !important;
+}
+
+.btn-tarkish:hover{
+  color: var(--black-font) !important;
+  border: 1px solid var(--bg-color-asphalt) !important;
+  background-color: transparent !important;
+  transition: all .3s ease-in-out;
 }

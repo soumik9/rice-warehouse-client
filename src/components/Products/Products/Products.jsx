@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import Product from '../Product/Product';
 import './products.scss'
 
@@ -46,6 +47,13 @@ const Products = () => {
                         </Row>
                     </div>
                     {/* products main finish */}
+
+        
+                    {/* products footer btn */}
+                    <div className="product__footer__btn d-flex justify-content-center mt-5">
+                        <Link to='/' className='btn btn-tarkish'>Manage Inventories</Link>
+                    </div>
+                    {/* products footer btn */}
 
                 </div>
             </Container>

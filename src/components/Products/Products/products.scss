@@ -86,21 +86,8 @@
                         bottom: 0;
                         left: 0;
                         width: 100%;
-                        padding-top: 0.7rem;
-                        padding-bottom: 0.7rem;
-                        letter-spacing: 1px;
-                        color: var(--white-font);
-                        text-transform: uppercase;
                         border-radius: 0;
                         border: none;
-                        background-color: var(--hover-tarkish);
-        
-                        &:hover{
-                            color: var(--black-font);
-                            border: 1px solid var(--bg-color-asphalt);
-                            background-color: transparent;
-                            transition: all .3s ease-in-out;
-                        }
         
                         .product__btn-icon{
                             font-size: 20px;
