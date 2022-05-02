@@ -1,15 +1,15 @@
 import React from 'react';
 import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
-import '../auth.scss'
-import { useForm } from 'react-hook-form';
-import authBanner from '../../../assets/images/auth-banner.png'
 import { RiLoginCircleLine } from 'react-icons/ri'
 import { Link, useNavigate } from 'react-router-dom';
-import SocialLogin from '../SocialLogin/SocialLogin';
+import { useForm } from 'react-hook-form';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import authBanner from '../../../assets/images/auth-banner.png'
+import SocialLogin from '../SocialLogin/SocialLogin';
 import auth from '../../../firebase.init';
 import toast from 'react-hot-toast';
 import Loading from '../../Shared/Loading/Loading';
+import '../auth.scss'
 
 const Register = () => {
 
@@ -18,13 +18,18 @@ const Register = () => {
     const [updateProfile] = useUpdateProfile(auth);
     let navigate = useNavigate();
 
+    // if loading this will return
     if(loading){ return <Loading></Loading>}
 
+    // if user then go to home
+    if(user)( navigate('/') )
+
+    // registration function
     const onRegisterSubmit = async (data) => {
         const {displayName, email, password} = data;
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName });
-        navigate('/');
+
         toast.success('Successfully User created!', {
             duration: 1000,
             position: 'top-right',
@@ -75,13 +80,7 @@ const Register = () => {
                                     </div>
 
                                     <div className='mb-4 text-center'>
-                                        <Form.Check
-                                            inline
-                                            label="Accept all the terms & conditions"
-                                            name="agree"
-                                            type='checkbox'
-                                            id='agree'
-                                        />
+                                        <Form.Check inline label="Accept all the terms & conditions" name="agree" type='checkbox' id='agree' />
                                     </div>
 
                                     <button type='submit' className='btn btn-tarkish'>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineHeart, AiFillFolderOpen, AiOutlineGlobal, AiTwotoneUnlock } from 'react-icons/ai'
 import { BiLogIn } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
@@ -9,7 +9,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import auth from '../../../firebase.init';
 import toast from 'react-hot-toast';
-
 
 const HeaderTop = () => {
 
@@ -62,7 +61,8 @@ const HeaderTop = () => {
                                 }
                               
                                 <li className='breadcrumb__item'>
-                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? user?.displayName : 'Login Please'}</a>
+                                    {/* user?.displayName */}
+                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? 'Logged' : 'Login Please'}</a>
                                 </li>
                             </ul>
                         </Col>
