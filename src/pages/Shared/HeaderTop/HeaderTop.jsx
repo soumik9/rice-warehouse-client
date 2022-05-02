@@ -45,7 +45,10 @@ const HeaderTop = () => {
                                 {
                                     user ?
                                     <li className='breadcrumb__item me-3'>
-                                        <Button type='submit' onClick={ logOut }><BiLogIn className='nav__top-icon' /> SignOut</Button>
+                                        <Button type='submit' onClick={ logOut }>
+                                            <BiLogIn className='nav__top-icon me-1' /> 
+                                            SignOut
+                                        </Button>
                                     </li>
                                     : 
                                     <li className='breadcrumb__item me-3'>

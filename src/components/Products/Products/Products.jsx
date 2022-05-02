@@ -12,7 +12,7 @@ const Products = () => {
         fetch('https://rice-warehouse.herokuapp.com/products')
         .then(res => res.json())
         .then(data => setProducts(data));
-    }, [])
+    }, [products])
 
 
     return (
@@ -40,7 +40,7 @@ const Products = () => {
                         <Row className='gy-5'>
                             {
                                 products.slice(0, 6).map(product => <Product
-                                    key={product._id}
+                                    key={product.name}
                                     product={product}
                                 >
                                 </Product>)
