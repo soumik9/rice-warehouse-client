@@ -4,17 +4,32 @@ import '../auth.scss'
 import { useForm } from 'react-hook-form';
 import authBanner from '../../../assets/images/auth-banner.png'
 import { RiLoginCircleLine } from 'react-icons/ri'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import auth from '../../../firebase.init';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import Loading from '../../Shared/Loading/Loading';
+import toast from 'react-hot-toast';
 
 const Reset = () => {
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-    const onResetSubmit = (data) => console.log(data);
+    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
+    let navigate = useNavigate();
+
+    // if sending this will return
+    if(sending){ return <Loading></Loading>}
+
+    const onResetSubmit = (data) => {
+        const { email } = data;
+        sendPasswordResetEmail(email)
+        navigate('/login');
+
+        toast.success('Successfully send reset email!', {
+            duration: 1000,
+            position: 'top-right',
+        });
+    }
 
     return (
         <section className='form reset'>
@@ -39,9 +54,9 @@ const Reset = () => {
 
                                     <div className="mb-4">
                                         <FloatingLabel controlId="eamil" label="Email address*"  >
-                                            <Form.Control type="email" {...register('email', { required: true })} placeholder="name@example.com" />
+                                            <Form.Control type="email" {...register('email', { required: "Email filed is required." })} placeholder="name@example.com" />
                                         </FloatingLabel>
-                                        {errors.email && <p className='text-danger'>Email filed is required.</p>}
+                                        {errors.email && <p className='text-danger'>{ errors.email.message }</p>}
                                     </div>
 
                                     <button type='submit' className='btn btn-tarkish'>

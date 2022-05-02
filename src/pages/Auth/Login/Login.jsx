@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import auth from '../../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import Loading from '../../Shared/Loading/Loading';
 
 
@@ -37,6 +37,9 @@ const Login = () => {
         <section className='form login'>
             <Container>
                 <div className="form__container">
+
+                    <Toaster />
+                
                     <Row className='justify-content-between align-items-center'>
                         
                         <Col md={6} className='mb-5 mb-md-0'>

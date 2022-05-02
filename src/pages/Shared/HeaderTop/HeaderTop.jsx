@@ -47,7 +47,7 @@ const HeaderTop = () => {
                                     <li className='breadcrumb__item me-3'>
                                         <Button type='submit' onClick={ logOut }><BiLogIn className='nav__top-icon' /> SignOut</Button>
                                     </li>
-                                    :
+                                    : 
                                     <li className='breadcrumb__item me-3'>
                                         <Link to="/login"><BiLogIn className='nav__top-icon' /> Log In</Link>
                                     </li>
