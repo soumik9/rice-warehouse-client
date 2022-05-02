@@ -12,7 +12,8 @@ const Products = () => {
         fetch('https://rice-warehouse.herokuapp.com/products')
         .then(res => res.json())
         .then(data => setProducts(data));
-    })
+    }, [])
+
 
     return (
         <section className='products'>

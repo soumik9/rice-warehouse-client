@@ -4,7 +4,7 @@ import '../auth.scss'
 import { useForm } from 'react-hook-form';
 import authBanner from '../../../assets/images/auth-banner.png'
 import { RiLoginCircleLine } from 'react-icons/ri'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import auth from '../../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -16,18 +16,21 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [ signInWithEmailAndPassword, user, loading, error, ] = useSignInWithEmailAndPassword(auth);
-    let navigate = useNavigate();
 
+    // for re back to previous location
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    if(user){ navigate(from, { replace: true }) }
+
+    // if loading this will return
     if(loading){ return <Loading></Loading>}
 
+    // Login function
     const onLoginSubmit = (data) => {
         const {email, password} = data;
         signInWithEmailAndPassword(email, password);
-        navigate('/');
-        toast.success('User Successfully Logged!', {
-            duration: 1000,
-            position: 'top-right',
-        });
+        toast.success('User Successfully Logged!', { duration: 1000, position: 'top-right', });
     }
 
     return (
@@ -66,13 +69,7 @@ const Login = () => {
                                     </div>
 
                                     <div className='mb-4 text-center'>
-                                        <Form.Check
-                                            inline
-                                            label="Remember Me"
-                                            name="remember"
-                                            type='checkbox'
-                                            id='remember'
-                                        />
+                                        <Form.Check inline label="Remember Me" name="remember" type='checkbox' id='remember' />
                                     </div>
 
                                     <button type='submit' className='btn btn-tarkish'>
