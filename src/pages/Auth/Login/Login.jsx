@@ -11,11 +11,11 @@ import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import toast, { Toaster } from 'react-hot-toast';
 import Loading from '../../Shared/Loading/Loading';
 
-
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
     const [ signInWithEmailAndPassword, user, loading, error, ] = useSignInWithEmailAndPassword(auth);
+
 
     // for re back to previous location
     let navigate = useNavigate();
@@ -27,9 +27,9 @@ const Login = () => {
     if(loading){ return <Loading></Loading>}
 
     // Login function
-    const onLoginSubmit = (data) => {
+    const onLoginSubmit = async (data) => {
         const {email, password} = data;
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
         toast.success('User Successfully Logged!', { duration: 1000, position: 'top-right', });
     }
 
@@ -53,6 +53,8 @@ const Login = () => {
 
                                 <div className="main__form-header text-center mb-5">
                                     <h3>Welcome Rice WareHouse</h3>
+                                    {error?.code === 'auth/user-not-found' && <small className='text-danger'>Your email is wrong!</small>}
+                                    {error?.code === 'auth/wrong-password' && <small className='text-danger'>Your password is wrong!</small>}
                                 </div>
 
                                 <form onSubmit={handleSubmit(onLoginSubmit)}>

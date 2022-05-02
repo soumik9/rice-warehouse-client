@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { AiOutlineHeart, AiFillFolderOpen, AiOutlineGlobal, AiTwotoneUnlock } from 'react-icons/ai'
 import { BiLogIn } from 'react-icons/bi'
 import { FaUserCircle } from 'react-icons/fa'
 import { Button, Col, Container, Row } from 'react-bootstrap'
-import './headertop.scss'
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import auth from '../../../firebase.init';
 import toast from 'react-hot-toast';
+import './headertop.scss'
 
 const HeaderTop = () => {
 
