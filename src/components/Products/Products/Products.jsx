@@ -51,7 +51,7 @@ const Products = () => {
         
                     {/* products footer btn */}
                     <div className="product__footer__btn d-flex justify-content-center mt-5">
-                        <Link to='/' className='btn btn-tarkish'>Manage Inventories</Link>
+                        <Link to='/inventory' className='btn btn-tarkish'>Manage Inventories</Link>
                     </div>
                     {/* products footer btn */}
 

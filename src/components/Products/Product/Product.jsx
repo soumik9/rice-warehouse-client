@@ -1,11 +1,18 @@
 import React from 'react';
 import { Button, Card, Col } from 'react-bootstrap';
 import { MdUpdate } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom';
 import '../Products/products.scss'
 
 const Product = ({ product }) => {
 
-    const { img, name, price, quantity, supplierName, description } = product;
+    let navigate = useNavigate();
+    
+    const { _id, img, name, price, quantity, supplierName, description } = product;
+
+    const singleItemIdSend = () => {
+        navigate(`/inventory/${_id}`);
+    }  
 
     return (
         <Col lg={4} md={6}>
@@ -29,7 +36,7 @@ const Product = ({ product }) => {
                    
 
                         <Card.Text className='mt-3'> { description }</Card.Text>
-                        <Button className='btn btn-tarkish'>Update <MdUpdate className='product__btn-icon' /></Button>
+                        <Button className='btn btn-tarkish' onClick={singleItemIdSend}>Update <MdUpdate className='product__btn-icon' /></Button>
                     </div>
                 </Card.Body>
             </Card>
