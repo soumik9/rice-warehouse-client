@@ -6,6 +6,7 @@ import RequiredAuth from './pages/Auth/RequiredAuth/RequiredAuth';
 import Reset from './pages/Auth/Reset/Reset';
 import Blog from './pages/Blog/Blog';
 import Home from './pages/Home/Home';
+import AddItem from './pages/Inventory/AddItem/AddItem';
 import InventoryAll from './pages/Inventory/AllItems/InventoryAll';
 import InventorySingle from './pages/Inventory/SingleItem/InventorySingle';
 import NotFound from './pages/NotFound/NotFound';
@@ -30,6 +31,7 @@ function App() {
           </RequiredAuth>
         }></Route>
 
+        <Route path='/add-product' element={<AddItem></AddItem>}></Route>
         <Route path='/blogs' element={<Blog></Blog>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
