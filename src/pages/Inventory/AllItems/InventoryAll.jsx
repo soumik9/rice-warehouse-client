@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import { GrView } from 'react-icons/gr'
+import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import useProducts from '../../../hooks/useProducts';
 import './inventoryAll.scss'
@@ -50,9 +51,12 @@ const InventoryAll = () => {
                         <Col lg={10} md={12}>
 
                             <div className="allProducts-header card shadow-sm">
-                                <Row>
-                                    <Col md={12}>
+                                <Row className='justify-content-md-between justify-content-center align-items-center'>
+                                    <Col lg={4} md={5} sm={10}>
                                         <h2 className='text-center py-3'><GrView className='me-1' /> All Products</h2>
+                                    </Col>
+                                    <Col lg={4} md={5} sm={10} className='ps-5 pe-4 mb-3 py-md-0 mb-md-0'>
+                                        <Link to='/add-product' className='btn btn-tarkish'>Add New Product</Link>
                                     </Col>
                                 </Row>
                             </div>
