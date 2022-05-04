@@ -1,13 +1,46 @@
 import React from 'react';
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import { GrView } from 'react-icons/gr'
+import swal from 'sweetalert';
 import useProducts from '../../../hooks/useProducts';
 import './inventoryAll.scss'
 
 const InventoryAll = () => {
 
     // getting data by hooks
-    const [products] = useProducts();
+    const [products, setProducts] = useProducts();
+
+    const deleteProduct = (productId) => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+
+                //console.log(productId);
+                const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
+
+                fetch(url, {
+                    method: 'DELETE',
+                })
+                .then(res => res.json())
+                .then(result => {
+                    const remaining = products.filter(product => product._id !== productId);
+                    setProducts(remaining);
+                    swal("Product has been deleted!", {
+                        icon: "success",
+                    });
+                })
+
+            } else {
+              swal("Your imaginary file is safe!");
+            }
+          });
+    }
 
     return (
         <section className='allProducts'>
@@ -45,7 +78,7 @@ const InventoryAll = () => {
                                                     <td>{product.supplierName}</td>
                                                     <td>{product.quantity}</td>
                                                     <td>{product.price} BDT</td>
-                                                    <td><Button variant='danger'>Delete</Button></td>
+                                                    <td><Button type='button' onClick={ () => deleteProduct(product._id)} variant='danger'>Delete</Button></td>
                                                 </tr>
                                             ))
                                         }
