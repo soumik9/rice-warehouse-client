@@ -2,48 +2,60 @@
     {
         "img": "https://i.ibb.co/0BQ0kgK/Nazirshail-Premium-Rice-50-kg-prev-ui.png",
         "name": "Nazirshail Premimum Rice (50KG)",
+        "email": "soumikahammed9@gmail.com",
         "price": 3500,
         "quantity": 1500,
+        "sold": 0,
         "supplierName": "Tanvir",
         "description": "Nazirshail Rice is popular rice in Bangladesh. Buy the best quality Nazirshail Rice at a regional price from Rice WareHouse online shop."
     },
     {
         "img": "https://i.ibb.co/3kFLWWg/Basmati-Rice-prev-ui.png",
         "name": "Basmati Rice (10KG)",
+        "email": "soumikahammed11@gmail.com",
         "price": 3000,
         "quantity": 500,
+        "sold": 0,
         "supplierName": "Tamim",
         "description": "A very fragrant rendition of Basmati rice. The quality range of Basmati Rice offered by us is used for making delicious pulao, biryani as main course on special occasion. "
     },
     {
         "img": "https://i.ibb.co/mTkLJmN/Miniket-Rice-prev-ui.png",
         "name": "Miniket Rice (50KG)",
+        "email": "soumikahammed11@gmail.com",
         "price": 2900,
         "quantity": 700,
+        "sold": 0,
         "supplierName": "Sawon",
         "description": "Miniket rice has many kinds of health benefits. The rice is easy to digest. Creates no problem for the stomach. This rice contains different food values in it."
     },
     {
         "img": "https://i.ibb.co/0rG2wJJ/Chinigura-Rice-prev-ui.png",
         "name": "Chinigura Rice (20KG)",
+        "email": "soumikahammed11@gmail.com",
         "price": 2300,
         "quantity": 250,
+        "sold": 0,
         "supplierName": "Radit",
         "description": "Chinigura Rice is a famous type of rice which is cultivated in Dinajpur. It gives you the pure and fresh texture of rice which is amazing to eat."
     },
     {
         "img": "https://i.ibb.co/SXgZXYY/Katari-Rice-1kg-prev-ui.png",
         "name": "Katari Rice (25KG)",
+        "email": "soumikahammed11@gmail.com",
         "price": 2500,
         "quantity": 500,
+        "sold": 0,
         "supplierName": "Tamim",
         "description": "Rice is our main granular food. Most of our daily calories come from rice. Katari rice is one of the most delicious, healthy and wholesome rice."
     },
     {
         "img": "https://i.ibb.co/sHzGqL7/Atop-rice-non-boiled-prev-ui.png",
         "name": "Pajam Rice (25KG)",
+        "email": "soumikahammed11@gmail.com",
         "price": 3200,
         "quantity": 150,
+        "sold": 0,
         "supplierName": "Sawon",
         "description": "Rice is the staple food of about half of the world's population. Bangladesh produces many fine aromatic and non/aromatic rice varieties like pajam rice."
     }

@@ -3,18 +3,42 @@ import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { GrAddCircle } from 'react-icons/gr'
 import { RiLoginCircleLine } from 'react-icons/ri';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import './addItem.scss'
+import auth from '../../../firebase.init';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddItem = () => {
 
-    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const [user] = useAuthState(auth);
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const addProduct= () => console.log('oko')
+    const addProduct= (data) => {
+       // const {name, img, supplierName, quantity, price, description} = data;
+
+        const url = `https://rice-warehouse.herokuapp.com/product`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result);
+            toast.success('New Product Added!', { duration: 1000, position: 'top-right', });
+            reset();
+        })
+    }
 
     return (
         <section className='add__item'>
             <Container>
                 <div className="add__item__container">
+
+                    <Toaster />
 
                     <Row className='justify-content-center'>
                         <Col lg={8} md={10}>
@@ -29,6 +53,11 @@ const AddItem = () => {
 
                             <form className="add__item-main card p-4 mt-4" onSubmit={handleSubmit(addProduct)}>
                                 <Row>
+
+
+                                    <Form.Control type="text" value={0} hidden {...register('sold')}  />
+                                    <Form.Control type="text" value={user?.email} hidden {...register('email')}  />
+
 
                                     <Col md={6}>
                                         <div className="mb-4">
