@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import './inventorySingle.scss'
 
@@ -11,7 +11,7 @@ const InventorySingle = () => {
     const [product, setProduct] = useState({});
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-
+    // fetching requested data by id
     useEffect(() => {
         const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
 
@@ -22,15 +22,8 @@ const InventorySingle = () => {
 
     const { _id, name, price, supplierName, quantity, sold, description } = product;
 
-    const handleDeliver = () => {
-        console.log('ok');
-    }
-
-    const onStockSubmit = (data) => {
-        const { stock } = data;
-        const newQuantity = parseInt(stock) + parseInt(quantity);
-        const updatedProduct = { newQuantity }
-
+    // to update data fetching
+    const fetchUpdateData = (updatedProduct, message, callReset) => {
         const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
 
         fetch(url, {
@@ -42,18 +35,38 @@ const InventorySingle = () => {
         })
         .then(res => res.json())
         .then(result => {
-            console.log(result);
-            toast.success('Stock update!', { duration: 1000, position: 'top-right', });
-            reset();
+            toast.success(message, { duration: 1000, position: 'top-right', });
+            if(callReset){ reset() }
         })
+    }
 
-        reset();
+    // to deliver decrease quantity and increase sold
+    const handleDeliver = () => {
+        const newQuantity = parseInt(quantity) - 1;
+        const newSold = parseInt(sold) + 1;
+        const updatedProduct = { newQuantity, newSold };
+        const message = 'Product Delivered!';
+
+        fetchUpdateData(updatedProduct, message, false);
+    }
+
+    // to stock increase quantity
+    const onStockSubmit = (data) => {
+        const { stock } = data;
+        const newQuantity = parseInt(stock) + parseInt(quantity);
+        const updatedProduct = { newQuantity }
+        const message = 'Stock update!';
+
+        fetchUpdateData(updatedProduct, message, true);
     }
 
     return (
         <section className='product'>
             <Container>
                 <div className="product__container">
+
+                    <Toaster />
+
                     <Row className='align-items-center'>
                         <Col md={6}>
                             <div className='product__img'>
