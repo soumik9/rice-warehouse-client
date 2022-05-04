@@ -1,0 +1,19 @@
+.allProducts{
+    padding: 70px 0;
+
+    .allProducts__container{
+
+        .allProducts-header{
+
+            h2{
+                color: var(--hover-tarkish);
+                text-transform: uppercase;
+
+                svg{
+                    position: relative;
+                    top: -3px;
+                }
+            }
+        }
+    }
+}

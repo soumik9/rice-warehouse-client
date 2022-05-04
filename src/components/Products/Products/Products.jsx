@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import useProducts from '../../../hooks/useProducts';
 import Product from '../Product/Product';
 import './products.scss'
 
 const Products = () => {
 
-    const [products, setProducts] = useState([]);
-
-    useEffect( () => {
-        fetch('https://rice-warehouse.herokuapp.com/products')
-        .then(res => res.json())
-        .then(data => setProducts(data));
-    }, [products])
-
+    // getting data by hooks
+    const [products] = useProducts();
 
     return (
         <section className='products'>

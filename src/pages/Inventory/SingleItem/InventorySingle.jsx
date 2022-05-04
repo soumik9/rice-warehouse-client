@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './inventorySingle.scss'
 
 const InventorySingle = () => {
@@ -18,7 +18,7 @@ const InventorySingle = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
-    }, [product])
+    }, [product, productId])
 
     const { _id, name, price, supplierName, quantity, sold, description } = product;
 
@@ -33,11 +33,11 @@ const InventorySingle = () => {
             },
             body: JSON.stringify(updatedProduct)
         })
-        .then(res => res.json())
-        .then(result => {
-            toast.success(message, { duration: 1000, position: 'top-right', });
-            if(callReset){ reset() }
-        })
+            .then(res => res.json())
+            .then(result => {
+                toast.success(message, { duration: 1000, position: 'top-right', });
+                if (callReset) { reset() }
+            })
     }
 
     // to deliver decrease quantity and increase sold
@@ -93,13 +93,13 @@ const InventorySingle = () => {
                                     <Button type='submit' onClick={handleDeliver} className='btn-tarkish'>Delivered</Button>
                                 </div>
 
-                                <div className="stock__form mt-5">
+                                <div className="stock__form my-5">
                                     <form onSubmit={handleSubmit(onStockSubmit)}>
                                         <div className="mb-4">
                                             <FloatingLabel controlId="stock" label={`Stock ${name}*`}  >
-                                                <Form.Control type="number" {...register('stock', { required: "Stock filed is required." })} />
+                                                <Form.Control type="number" {...register('stock', { required: "Stock filed is required & Must be a number." })} />
                                             </FloatingLabel>
-                                            {errors.stock && <p className='text-danger'>{ errors.stock.message }</p>}
+                                            {errors.stock && <p className='text-danger'>{errors.stock.message}</p>}
                                         </div>
 
                                         <div className='mt-4'>
@@ -107,6 +107,14 @@ const InventorySingle = () => {
                                         </div>
                                     </form>
                                 </div>
+
+                                <hr />
+
+                                {/* manage inventories link */}
+                                <div className="product__footer__btn d-flex justify-content-center mt-5">
+                                    <Link to='/inventory' className='btn btn-tarkish w-100'>Manage Inventories</Link>
+                                </div>
+                                {/* manage inventories link */}
 
                             </div>
                         </Col>
