@@ -27,7 +27,25 @@ const InventorySingle = () => {
     }
 
     const onStockSubmit = (data) => {
-   
+        const { stock } = data;
+        const newQuantity = parseInt(stock) + parseInt(quantity);
+        const updatedProduct = { newQuantity }
+
+        const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedProduct)
+        })
+        .then(res => res.json())
+        .then(result => {
+            console.log(result);
+            toast.success('Stock update!', { duration: 1000, position: 'top-right', });
+            reset();
+        })
 
         reset();
     }
