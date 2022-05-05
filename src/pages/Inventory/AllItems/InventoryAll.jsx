@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import { GrView } from 'react-icons/gr'
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
-import useProducts from '../../../hooks/useProducts';
 import './inventoryAll.scss'
 
 const InventoryAll = () => {
 
-    // getting data by hooks
-    const [products, setProducts] = useProducts();
+    const [products, setProducts] = useState([]);
+    const [pages, setPages] = useState(0);
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(5);
+
+
+    useEffect(() => {
+        fetch(`https://rice-warehouse.herokuapp.com/products?page=${page}&size=${size}`)
+        .then(res => res.json())
+        .then(data => setProducts(data))
+    }, [page, size]);
+
+
+    useEffect( () => {
+        fetch('http://localhost:5000/products-count')
+        .then(res => res.json())
+        .then(result => setPages(Math.ceil(result.count/5)));
+    }, [])
 
     const deleteProduct = (productId) => {
         swal({
@@ -21,8 +36,6 @@ const InventoryAll = () => {
           })
           .then((willDelete) => {
             if (willDelete) {
-
-                //console.log(productId);
                 const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
 
                 fetch(url, {
@@ -62,6 +75,16 @@ const InventoryAll = () => {
                             </div>
 
                             <div className="allProducts__main mt-5 card p-4">
+
+                                <div className='mb-4 d-flex justify-content-end'>
+                                    <span className='me-2'>Per Page</span>
+                                    <select onChange={ e => setSize(e.target.value)}>
+                                        <option value="5" selected>5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                </div>
+
                                 <Table responsive hover bordered>
                                     <thead>
                                         <tr className='text-center'>
@@ -89,6 +112,16 @@ const InventoryAll = () => {
 
                                     </tbody>
                                 </Table>
+
+                                <div className='mt-4 d-flex justify-content-end'>
+                                    {
+                                        [...Array(pages).keys()].map(number => <Button 
+                                            className={page === number ? 'btn-page-selected btn-page mx-2 ' : 'btn-page mx-2 '}
+                                            onClick={ () => setPage(number) }>
+                                                {number + 1}
+                                            </Button>)
+                                    }
+                                </div>
                             </div>
 
                         </Col>

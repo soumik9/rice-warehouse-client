@@ -8,15 +8,17 @@ We are engaged in milling of best authentic Bangladeshi rice with best in class 
 
 ## Features
 
-* Registration
+* Registration.
 * Email-Password auth with email verification.
-* Google auth
-* Reset Password 
+* Google auth.
+* Reset Password .
 * Manage all products.
 * Can add new products.
 * Can update product quantity (to stock update quantity).
 * Can deliver product (to deliver decrease quantity and increase sold).
 * Can delete product.
+* Can view own added items on My Items.
+* Customer reviews.
 
 
 ## Technologies

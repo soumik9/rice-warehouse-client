@@ -65,7 +65,8 @@ const HeaderTop = () => {
                               
                                 <li className='breadcrumb__item'>
                                     {/* user?.displayName */}
-                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? 'Logged' : 'Login Please'}</a>
+                                    <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? user?.displayName : 'Login Please'}</a>
+                                    {/* <a href="#home"><FaUserCircle className='nav__top-icon' /> {user ? 'Logged' : 'Login Please'}</a> */}
                                 </li>
                             </ul>
                         </Col>

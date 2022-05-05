@@ -48,3 +48,14 @@ a{
   background-color: transparent !important;
   transition: all .3s ease-in-out;
 }
+
+.btn-page{
+  color: var(--bg-color-asphalt) !important;
+  border: 1px solid var(--bg-color-asphalt) !important;
+  background-color: transparent !important;
+}
+
+.btn-page-selected{
+  color: var(--white-font) !important;
+  background-color: var(--hover-tarkish) !important;
+}
