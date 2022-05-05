@@ -8,6 +8,7 @@ import Blog from './pages/Blog/Blog';
 import Home from './pages/Home/Home';
 import AddItem from './pages/Inventory/AddItem/AddItem';
 import InventoryAll from './pages/Inventory/AllItems/InventoryAll';
+import MyItems from './pages/Inventory/MyItems/MyItems/MyItems';
 import InventorySingle from './pages/Inventory/SingleItem/InventorySingle';
 import NotFound from './pages/NotFound/NotFound';
 import Footer from './pages/Shared/Footer/Footer';
@@ -32,6 +33,7 @@ function App() {
         }></Route>
 
         <Route path='/add-product' element={<AddItem></AddItem>}></Route>
+        <Route path='/my-products' element={<MyItems></MyItems>}></Route>
         <Route path='/blogs' element={<Blog></Blog>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>

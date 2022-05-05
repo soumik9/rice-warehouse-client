@@ -1,0 +1,23 @@
+.myItems{
+    padding: 70px 0;
+
+    .myItems__container{
+
+        .myItems-header{
+
+            h2{
+                color: var(--hover-tarkish);
+                text-transform: uppercase;
+
+                svg{
+                    position: relative;
+                    top: -3px;
+                }
+            }
+
+            h6{
+                color: var(--hover-tarkish);
+            }
+        }
+    }
+}

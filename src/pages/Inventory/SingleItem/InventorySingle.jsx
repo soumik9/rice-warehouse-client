@@ -33,11 +33,11 @@ const InventorySingle = () => {
             },
             body: JSON.stringify(updatedProduct)
         })
-            .then(res => res.json())
-            .then(result => {
-                toast.success(message, { duration: 1000, position: 'top-right', });
-                if (callReset) { reset() }
-            })
+        .then(res => res.json())
+        .then(result => {
+            toast.success(message, { duration: 1000, position: 'top-right', });
+            if (callReset) { reset() }
+        })
     }
 
     // to deliver decrease quantity and increase sold

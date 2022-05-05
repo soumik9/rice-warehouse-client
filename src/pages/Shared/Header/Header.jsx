@@ -1,10 +1,15 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
-import './header.scss'
-import logo from '../../../assets/images/logo.png'
 import { Link } from 'react-router-dom'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import logo from '../../../assets/images/logo.png'
+import auth from '../../../firebase.init';
+import './header.scss'
 
 const Header = () => {
+
+    const [user] = useAuthState(auth);
+
     return (
         <Navbar expand="lg"  bg="light">
             <Container>
@@ -16,7 +21,16 @@ const Header = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto">
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
-                        <Nav.Link as={Link} to="/add-product">Add Item</Nav.Link>
+                        {
+                            user && (
+                                <>
+                                    <Nav.Link as={Link} to="/inventory">Manage Items</Nav.Link>
+                                    <Nav.Link as={Link} to="/add-product">Add Item</Nav.Link>
+                                    <Nav.Link as={Link} to="/my-products">My Items</Nav.Link>
+                                </>
+                            )
+                        }
+                     
                         <Nav.Link as={Link} to="/blogs">Blogs</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
