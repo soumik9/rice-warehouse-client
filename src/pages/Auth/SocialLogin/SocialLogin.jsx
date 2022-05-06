@@ -7,20 +7,20 @@ import auth from '../../../firebase.init';
 import './sociallogin.scss'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 
 const SocialLogin = () => {
 
-    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, user, loading] = useSignInWithGoogle(auth);
 
-    console.log(error);
-      // for re back to previous location
-      let navigate = useNavigate();
-      let location = useLocation();
-      let from = location.state?.from?.pathname || "/";
-      if(user){ navigate(from, { replace: true }) }
+    // for re back to previous location
+    let navigate = useNavigate();
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
+    //if(user){ navigate(from, { replace: true }) }
 
-     // if loading this will return
-     if(loading){ 
+    // if loading this will return
+    if(loading){ 
          return (
                 <div className='text-center mt-4'>
                     <Spinner animation="border" role="status">
@@ -28,6 +28,25 @@ const SocialLogin = () => {
                     </Spinner>
                 </div>
         )
+    }
+
+    const handleGoogleLogin = async () => {
+       await signInWithGoogle();
+       let email = user?.email;
+
+       fetch('https://rice-warehouse.herokuapp.com/login', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        })
+        .then(res => res.json())
+        .then(result => {
+            localStorage.setItem('accessToken', result.accessToken);
+            navigate(from, { replace: true });
+            toast.success('User Successfully Social Logged!', { duration: 2000, position: 'top-right', });
+        })
     }
 
     return (
@@ -43,7 +62,7 @@ const SocialLogin = () => {
                 </button>
             </div>
             <div className='mx-3'>
-                <button onClick={() => signInWithGoogle()}>
+                <button onClick={handleGoogleLogin}>
                     <FcGoogle className='form__socials-icon google__icon' />
                 </button>
             </div>

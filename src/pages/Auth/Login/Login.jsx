@@ -29,7 +29,7 @@ const Login = () => {
     // Login function
     const onLoginSubmit = async (data, event) => {
         const {email, password} = data;
-        await signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password); 
 
         fetch('https://rice-warehouse.herokuapp.com/login', {
             method: 'POST',
