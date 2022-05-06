@@ -68,3 +68,43 @@
 
     }
 }
+
+@media screen and (max-width: 992px) and (min-width: 578px){
+    .product{
+        padding: 70px 0;
+
+        .product__container{
+
+            .product__img{
+                
+                img{
+                    padding: 30px 10px 10px 0;
+                }
+            }
+    
+            .product__single__details{
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .product{
+        padding: 60px 0;
+
+        .product__container{
+
+            .product__img{
+                
+                img{
+                    padding: 30px 10px 10px 0;
+                }
+            }
+    
+            .product__single__details{
+                width: 100%;
+            }
+        }
+    }
+}

@@ -14,23 +14,36 @@ import Loading from '../../Shared/Loading/Loading';
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
-    const [ signInWithEmailAndPassword, user, loading, error, ] = useSignInWithEmailAndPassword(auth);
+    const [ signInWithEmailAndPassword, loading, error, ] = useSignInWithEmailAndPassword(auth);
 
 
     // for re back to previous location
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    if(user){ navigate(from, { replace: true }) }
+    // if(user){ navigate(from, { replace: true }) }
 
     // if loading this will return
     if(loading){ return <Loading></Loading>}
 
     // Login function
-    const onLoginSubmit = async (data) => {
+    const onLoginSubmit = async (data, event) => {
         const {email, password} = data;
         await signInWithEmailAndPassword(email, password);
-        toast.success('User Successfully Logged!', { duration: 1000, position: 'top-right', });
+
+        fetch('https://rice-warehouse.herokuapp.com/login', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ email })
+        })
+        .then(res => res.json())
+        .then(result => {
+            localStorage.setItem('accessToken', result.accessToken);
+            navigate(from, { replace: true });
+            toast.success('User Successfully Logged!', { duration: 1000, position: 'top-right', });
+        })
     }
 
     return (

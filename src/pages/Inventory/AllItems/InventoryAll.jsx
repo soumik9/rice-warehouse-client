@@ -12,20 +12,21 @@ const InventoryAll = () => {
     const [page, setPage] = useState(0);
     const [size, setSize] = useState(5);
 
-
+    // fetching data with query
     useEffect(() => {
         fetch(`https://rice-warehouse.herokuapp.com/products?page=${page}&size=${size}`)
         .then(res => res.json())
         .then(data => setProducts(data))
     }, [page, size]);
 
-
+    // fetching total product
     useEffect( () => {
         fetch('http://localhost:5000/products-count')
         .then(res => res.json())
         .then(result => setPages(Math.ceil(result.count/5)));
     }, [])
 
+    // delete single product with sweetaleart
     const deleteProduct = (productId) => {
         swal({
             title: "Are you sure?",

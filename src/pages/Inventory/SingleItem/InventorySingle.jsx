@@ -67,16 +67,16 @@ const InventorySingle = () => {
 
                     <Toaster />
 
-                    <Row className='align-items-center'>
-                        <Col md={6}>
+                    <Row className='align-items-start align-items-md-center'>
+                        <Col lg={6}>
                             <div className='product__img'>
                                 <img className='img-fluid' src={product.img} alt="" />
                                 <h4>Id: {_id}</h4>
                             </div>
                         </Col>
-                        <Col md={6}>
-                            <div className="product__single__details px-5">
-                                <h2>{name}</h2>
+                        <Col lg={6}>
+                            <div className="product__single__details px-lg-5 px-0 mt-5 mt-lg-0">
+                                <h2 className='text-center text-lg-start'>{name}</h2>
                                 <div className='info mt-3 px-2 d-flex justify-content-between'>
                                     <h6>Supplier: <span>{supplierName}</span></h6>
                                     <h6>Quantity: <span>{quantity}</span></h6>

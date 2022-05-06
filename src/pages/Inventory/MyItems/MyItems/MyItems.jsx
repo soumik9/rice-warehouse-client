@@ -1,26 +1,45 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 import { GrView } from 'react-icons/gr'
+import { useNavigate } from 'react-router-dom';
 import auth from '../../../../firebase.init';
-import useProducts from '../../../../hooks/useProducts';
 import './myItems.scss'
 
 const MyItems = () => {
 
     const [user] = useAuthState(auth);
     const [myItems, setMyItems] = useState([]);
+    let navigate = useNavigate();
 
-    useEffect(() => {
+    useEffect( () => {
         const getMyItems = async () => {
-            const email = user?.email;
-            const url = `https://rice-warehouse.herokuapp.com/my-products?email=${email}`
-            fetch(url)
+            const email = user.email;
+            const url = `https://rice-warehouse.herokuapp.com/my-products?email=${email}`;
+
+            try {
+                fetch(url, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    }
+                })
                 .then(res => res.json())
                 .then(data => setMyItems(data))
+            }catch(error) {
+                console.log(error);
+                // console.log(error.response.status);
+
+                // if(error.response.status === 401 || error.response.status === 403){
+                //     signOut(auth);
+                //     navigate('/login')
+                //     toast.error('Forbidden/Unauthorized access!', { duration: 1000, position: 'top-right', });
+                // }
+            }
         } 
         getMyItems();
-    }, [myItems, user])
+    }, [user])
 
 
 
