@@ -34,12 +34,12 @@ const MyItems = () => {
                 if(error.response.status === 401 || error.response.status === 403){
                     signOut(auth);
                     navigate('/login')
-                    toast.error('Forbidden/Unauthorized access!', { duration: 1000, position: 'top-right', });
+                    toast.error('Forbidden/Unauthorized access!', { duration: 2000, position: 'top-right', });
                 }
             }
         } 
         getMyItems();
-    }, [user])
+    }, [user, navigate])
 
     return (
         <section className='myItems'>
