@@ -21,7 +21,7 @@ const InventoryAll = () => {
 
     // fetching total product
     useEffect( () => {
-        fetch('http://localhost:5000/products-count')
+        fetch('https://rice-warehouse.herokuapp.com/products-count')
         .then(res => res.json())
         .then(result => setPages(Math.ceil(result.count/5)));
     }, [])

@@ -47,7 +47,7 @@ const Footer = () => {
                         <Col lg={3} md={4} className="mt-4 mt-md-0">
                             <div className="footer__container__links__section">
                                 <ul className='text-center text-lg-start'>
-                                    <li><a href="#footer">Our product</a></li>
+                                    <li><a href="#footer">Our products</a></li>
                                     <li><a href="#footer">Nazirshail Rice</a></li>
                                     <li><a href="#footer">Chinigura Rice</a> </li>
                                     <li><a href="#footer">Paijam Rice</a> </li>
