@@ -8,7 +8,7 @@ import Blog from './pages/Blog/Blog';
 import Home from './pages/Home/Home';
 import AddItem from './pages/Inventory/AddItem/AddItem';
 import InventoryAll from './pages/Inventory/AllItems/InventoryAll';
-import MyItems from './pages/Inventory/MyItems/MyItems/MyItems';
+import MyItems from './pages/Inventory/MyItems/MyItems';
 import InventorySingle from './pages/Inventory/SingleItem/InventorySingle';
 import NotFound from './pages/NotFound/NotFound';
 import Footer from './pages/Shared/Footer/Footer';

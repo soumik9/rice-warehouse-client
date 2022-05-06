@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Container, Row, Table } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import { GrView } from 'react-icons/gr'
 import { Link } from 'react-router-dom';
-import swal from 'sweetalert';
+import Items from '../Items/Items';
 import './inventoryAll.scss'
 
 const InventoryAll = () => {
@@ -26,37 +26,7 @@ const InventoryAll = () => {
         .then(result => setPages(Math.ceil(result.count/5)));
     }, [])
 
-    // delete single product with sweetaleart
-    const deleteProduct = (productId) => {
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((willDelete) => {
-            if (willDelete) {
-                const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
-
-                fetch(url, {
-                    method: 'DELETE',
-                })
-                .then(res => res.json())
-                .then(result => {
-                    const remaining = products.filter(product => product._id !== productId);
-                    setProducts(remaining);
-                    swal("Product has been deleted!", {
-                        icon: "success",
-                    });
-                })
-
-            } else {
-              swal("Your imaginary file is safe!");
-            }
-          });
-    }
-
+   
     return (
         <section className='allProducts'>
             <Container>
@@ -86,33 +56,11 @@ const InventoryAll = () => {
                                     </select>
                                 </div>
 
-                                <Table responsive hover bordered>
-                                    <thead>
-                                        <tr className='text-center'>
-                                            <th>Product Id</th>
-                                            <th>Product Name</th>
-                                            <th>Supplier Name</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className='align-middle'>
-                                        {
-                                            products.map(product => (
-                                                <tr key={product._id}  className='text-center'>
-                                                    <td>{product._id}</td>
-                                                    <td>{product.name}</td>
-                                                    <td>{product.supplierName}</td>
-                                                    <td>{product.quantity}</td>
-                                                    <td>{product.price} BDT</td>
-                                                    <td><Button type='button' onClick={ () => deleteProduct(product._id)} variant='danger'>Delete</Button></td>
-                                                </tr>
-                                            ))
-                                        }
-
-                                    </tbody>
-                                </Table>
+                                {/* table */}
+                                <Items 
+                                    products={products}
+                                    setProducts={setProducts}
+                                ></Items>
 
                                 <div className='mt-4 d-flex justify-content-end'>
                                     {
