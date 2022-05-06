@@ -24,9 +24,15 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/inventory' element={<InventoryAll></InventoryAll>}></Route>
+
 
         {/* Required auth routes */}
+        <Route path='/inventory' element={
+          <RequiredAuth>
+                <InventoryAll></InventoryAll>
+          </RequiredAuth>
+        }></Route>
+        
         <Route path='/inventory/:productId' element={
           <RequiredAuth>
             <InventorySingle></InventorySingle>

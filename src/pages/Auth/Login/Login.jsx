@@ -1,15 +1,15 @@
 import React from 'react';
 import { Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
-import '../auth.scss'
-import { useForm } from 'react-hook-form';
-import authBanner from '../../../assets/images/auth-banner.png'
-import { RiLoginCircleLine } from 'react-icons/ri'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import SocialLogin from '../SocialLogin/SocialLogin';
-import auth from '../../../firebase.init';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import toast, { Toaster } from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
+import { RiLoginCircleLine } from 'react-icons/ri'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import authBanner from '../../../assets/images/auth-banner.png'
+import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../Shared/Loading/Loading';
+import auth from '../../../firebase.init';
+import '../auth.scss'
 
 const Login = () => {
 

@@ -14,7 +14,7 @@ import '../auth.scss'
 const Register = () => {
 
     const { register, handleSubmit, getValues, formState: { errors }, } = useForm();
-    const [ createUserWithEmailAndPassword, user, loading, error,] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true});
+    const [ createUserWithEmailAndPassword, user, loading ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true});
     const [updateProfile] = useUpdateProfile(auth);
     let navigate = useNavigate();
 

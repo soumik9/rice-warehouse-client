@@ -3,9 +3,14 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { GrView } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 import auth from '../../../firebase.init';
 import Items from '../Items/Items';
 import './myItems.scss'
+
+
 
 const MyItems = () => {
 
@@ -19,22 +24,18 @@ const MyItems = () => {
             const url = `https://rice-warehouse.herokuapp.com/my-products?email=${email}`;
 
             try {
-                fetch(url, {
+                const { data } = await axios.get(url, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('accessToken')}`
                     }
                 })
-                .then(res => res.json())
-                .then(data => setMyItems(data))
-            }catch(error) {
-                console.log(error);
-                // console.log(error.response.status);
-
-                // if(error.response.status === 401 || error.response.status === 403){
-                //     signOut(auth);
-                //     navigate('/login')
-                //     toast.error('Forbidden/Unauthorized access!', { duration: 1000, position: 'top-right', });
-                // }
+                setMyItems(data);
+            } catch (error) {
+                if(error.response.status === 401 || error.response.status === 403){
+                    signOut(auth);
+                    navigate('/login')
+                    toast.error('Forbidden/Unauthorized access!', { duration: 1000, position: 'top-right', });
+                }
             }
         } 
         getMyItems();

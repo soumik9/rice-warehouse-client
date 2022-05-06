@@ -49,8 +49,8 @@ const InventoryAll = () => {
 
                                 <div className='mb-4 d-flex justify-content-end'>
                                     <span className='me-2'>Per Page</span>
-                                    <select onChange={ e => setSize(e.target.value)}>
-                                        <option value="5" selected>5</option>
+                                    <select defaultValue={5} onChange={ e => setSize(e.target.value)}>
+                                        <option value="5">5</option>
                                         <option value="10">10</option>
                                         <option value="15">15</option>
                                     </select>

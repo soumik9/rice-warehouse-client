@@ -42,12 +42,17 @@ const InventorySingle = () => {
 
     // to deliver decrease quantity and increase sold
     const handleDeliver = () => {
-        const newQuantity = parseInt(quantity) - 1;
-        const newSold = parseInt(sold) + 1;
-        const updatedProduct = { newQuantity, newSold };
-        const message = 'Product Delivered!';
-
-        fetchUpdateData(updatedProduct, message, false);
+        if(quantity > 0){
+            const newQuantity = parseInt(quantity) - 1;
+            const newSold = parseInt(sold) + 1;
+            console.log(newQuantity, newSold)
+            const updatedProduct = { newQuantity, newSold };
+            const message = 'Product Delivered!';
+    
+            fetchUpdateData(updatedProduct, message, false);
+        }else{
+            toast.success('Please stock item', { duration: 1000, position: 'top-right', });
+        }
     }
 
     // to stock increase quantity
@@ -76,7 +81,7 @@ const InventorySingle = () => {
                         </Col>
                         <Col lg={6}>
                             <div className="product__single__details px-lg-5 px-0 mt-5 mt-lg-0">
-                                <h2 className='text-center text-lg-start'>{name}</h2>
+                                <h2 className='text-center'>{name}</h2>
                                 <div className='info mt-3 px-2 d-flex justify-content-between'>
                                     <h6>Supplier: <span>{supplierName}</span></h6>
                                     <h6>Quantity: <span>{quantity}</span></h6>
@@ -90,7 +95,10 @@ const InventorySingle = () => {
                                 </div>
 
                                 <div className='mt-4'>
-                                    <Button type='submit' onClick={handleDeliver} className='btn-tarkish'>Delivered</Button>
+                                    <Button type='submit' 
+                                        onClick={handleDeliver} 
+                                        className='btn-tarkish'
+                                    >Delivered</Button>
                                 </div>
 
                                 <div className="stock__form my-5">

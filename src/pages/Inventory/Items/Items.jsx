@@ -5,8 +5,8 @@ import Item from './Item';
 
 const Items = ({ products, setProducts }) => {
 
-       // delete single product with sweetaleart
-       const deleteProduct = (productId) => {
+    // delete single product with sweetaleart
+    const deleteProduct = (productId) => {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -51,12 +51,13 @@ const Items = ({ products, setProducts }) => {
             </thead>
             <tbody className='align-middle'>
                 {
-                    products.map(product => <Item 
-                            key={product._id}
-                            product={product}
-                            setProducts={setProducts}
-                            deleteProduct={deleteProduct}
-                        ></Item> )
+                    products.map((product, index )=> <Item
+                        key={product._id}
+                        product={product}
+                        index={index}
+                        setProducts={setProducts}
+                        deleteProduct={deleteProduct}
+                    ></Item>)
                 }
 
             </tbody>
