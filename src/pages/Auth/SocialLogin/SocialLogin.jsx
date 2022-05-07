@@ -31,16 +31,19 @@ const SocialLogin = () => {
         )
     }
 
+    if(user){
+        let email = user?.email;
+
+        axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
+        .then(response => {
+            localStorage.setItem('accessToken', response.data.accessToken);
+            navigate(from, { replace: true });
+            toast.success('User Successfully Social Logged!', { duration: 2000, position: 'top-right', });
+        });
+    }
+
     const handleGoogleLogin = async () => {
        await signInWithGoogle();
-       let email = user?.email;
-
-       await axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
-       .then(response => {
-           localStorage.setItem('accessToken', response.data.accessToken);
-           navigate(from, { replace: true });
-           toast.success('User Successfully Social Logged!', { duration: 2000, position: 'top-right', });
-       });
     }
 
     return (
