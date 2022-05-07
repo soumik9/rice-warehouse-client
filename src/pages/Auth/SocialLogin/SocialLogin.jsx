@@ -37,7 +37,6 @@ const SocialLogin = () => {
 
        await axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
        .then(response => {
-           console.log(response);
            localStorage.setItem('accessToken', response.data.accessToken);
            navigate(from, { replace: true });
            toast.success('User Successfully Social Logged!', { duration: 2000, position: 'top-right', });

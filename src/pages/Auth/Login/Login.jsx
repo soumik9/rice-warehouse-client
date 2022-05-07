@@ -14,7 +14,7 @@ import axios from 'axios';
 
 const Login = () => {
 
-    const { register, handleSubmit, formState: { errors }, } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [ signInWithEmailAndPassword, user, loading, error, ] = useSignInWithEmailAndPassword(auth);
 
 
@@ -22,25 +22,24 @@ const Login = () => {
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    // if(user){ navigate(from, { replace: true }) }
+    
+    if(user){ 
+        let email = user?.email;
+        axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
+        .then(response => {
+            localStorage.setItem('accessToken', response.data.accessToken);
+            navigate(from, { replace: true }) 
+            toast.success('User Successfully Logged!', { duration: 2000, position: 'top-right', });
+        });
+    }
 
     // if loading this will return
     if(loading){ return <Loading></Loading>}
-
-    console.log(error?.code);
 
     // Login function
     const onLoginSubmit = async (data) => {
         const {email, password} = data;
         await signInWithEmailAndPassword(email, password); 
-
-        await axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
-        .then(response => {
-            console.log(response);
-            localStorage.setItem('accessToken', response.data.accessToken);
-            navigate(from, { replace: true });
-            toast.success('User Successfully Logged!', { duration: 2000, position: 'top-right', });
-        });
     }
 
     return (
