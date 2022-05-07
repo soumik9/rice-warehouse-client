@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -12,32 +13,23 @@ const InventorySingle = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     // fetching requested data by id
-    useEffect(() => {
-        const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
-
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setProduct(data));
+    useEffect( () => {  
+        const getProduct = async () => {
+            const { data } = await axios.get(`https://rice-warehouse.herokuapp.com/product/${productId}`);
+            setProduct(data)
+        }
+        getProduct();
     }, [product, productId])
+ 
 
     const { _id, name, price, supplierName, quantity, sold, description } = product;
 
     // to update data fetching
-    const fetchUpdateData = (updatedProduct, message, callReset) => {
-        const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
-
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updatedProduct)
-        })
-        .then(res => res.json())
-        .then(result => {
-            toast.success(message, { duration: 1000, position: 'top-right', });
-            if (callReset) { reset() }
-        })
+    const fetchUpdateData = async (updatedProduct, message, callReset) => {
+        const { data } = await axios.put(`https://rice-warehouse.herokuapp.com/product/${productId}`, updatedProduct)
+        setProduct(data)
+        toast.success(message, { duration: 1000, position: 'top-right', });
+        if (callReset) { reset() }
     }
 
     // to deliver decrease quantity and increase sold

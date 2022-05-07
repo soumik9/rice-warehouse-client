@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { GrView } from 'react-icons/gr'
@@ -13,18 +14,23 @@ const InventoryAll = () => {
     const [size, setSize] = useState(5);
 
     // fetching data with query
-    useEffect(() => {
-        fetch(`https://rice-warehouse.herokuapp.com/products?page=${page}&size=${size}`)
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    }, [page, size]);
+    useEffect( () => {  
+        const getProducts = async () => {
+            const { data } = await axios.get(`https://rice-warehouse.herokuapp.com/products?page=${page}&size=${size}`);
+            setProducts(data)
+        }
+        getProducts();
+    }, [page, size])
 
     // fetching total product
-    useEffect( () => {
-        fetch('https://rice-warehouse.herokuapp.com/products-count')
-        .then(res => res.json())
-        .then(result => setPages(Math.ceil(result.count/5)));
+    useEffect( () => {  
+        const getProductCount = async () => {
+            const { data } = await axios.get('https://rice-warehouse.herokuapp.com/products-count');
+            setPages(Math.ceil(data.count/5));
+        }
+        getProductCount();
     }, [])
+
 
    
     return (

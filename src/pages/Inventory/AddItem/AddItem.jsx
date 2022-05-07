@@ -7,30 +7,21 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import './addItem.scss'
 import auth from '../../../firebase.init';
 import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios';
 
 const AddItem = () => {
 
     const [user] = useAuthState(auth);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const addProduct= (data) => {
+    const addProduct = async (data) => {
        // const {name, img, supplierName, quantity, price, description} = data;
 
-        const url = `https://rice-warehouse.herokuapp.com/product`;
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then(res => res.json())
-        .then(result => {
-            console.log(result);
+        await axios.post(`https://rice-warehouse.herokuapp.com/product`, data)
+        .then(response => {
             toast.success('New Product Added!', { duration: 1000, position: 'top-right', });
             reset();
-        })
+        });
     }
 
     return (

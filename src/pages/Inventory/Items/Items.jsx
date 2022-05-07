@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import { Table } from 'react-bootstrap';
 import swal from 'sweetalert';
@@ -6,7 +7,7 @@ import Item from './Item';
 const Items = ({ products, setProducts }) => {
 
     // delete single product with sweetaleart
-    const deleteProduct = (productId) => {
+    const deleteProduct = async (productId) => {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -14,26 +15,20 @@ const Items = ({ products, setProducts }) => {
             buttons: true,
             dangerMode: true,
         })
-            .then((willDelete) => {
-                if (willDelete) {
-                    const url = `https://rice-warehouse.herokuapp.com/product/${productId}`;
-
-                    fetch(url, {
-                        method: 'DELETE',
-                    })
-                        .then(res => res.json())
-                        .then(result => {
-                            const remaining = products.filter(product => product._id !== productId);
-                            setProducts(remaining);
-                            swal("Product has been deleted!", {
-                                icon: "success",
-                            });
-                        })
-
-                } else {
-                    swal("Your imaginary file is safe!");
-                }
-            });
+        .then((willDelete) => {
+            if (willDelete) {
+                axios.delete(`https://rice-warehouse.herokuapp.com/product/${productId}`)
+                .then(response => {
+                    const remaining = products.filter(product => product._id !== productId);
+                        setProducts(remaining);
+                        swal("Product has been deleted!", {
+                            icon: "success",
+                        });
+                });
+            } else {
+                swal("Your imaginary file is safe!");
+            }
+        });
     }
 
     return (
@@ -59,7 +54,6 @@ const Items = ({ products, setProducts }) => {
                         deleteProduct={deleteProduct}
                     ></Item>)
                 }
-
             </tbody>
         </Table>
     );
