@@ -10,8 +10,6 @@ import auth from '../../../firebase.init';
 import Items from '../Items/Items';
 import './myItems.scss'
 
-
-
 const MyItems = () => {
 
     const [user] = useAuthState(auth);
@@ -20,7 +18,7 @@ const MyItems = () => {
 
     useEffect( () => {
         const getMyItems = async () => {
-            const email = user.email;
+            const email = user?.email;
             const url = `https://rice-warehouse.herokuapp.com/my-products?email=${email}`;
 
             try {

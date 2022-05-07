@@ -3,12 +3,13 @@ import {SiFacebook} from 'react-icons/si'
 import {AiFillTwitterCircle} from 'react-icons/ai'
 import {FcGoogle} from 'react-icons/fc'
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import auth from '../../../firebase.init';
-import './sociallogin.scss'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import auth from '../../../firebase.init';
+import './sociallogin.scss'
+
 
 const SocialLogin = () => {
 
@@ -32,14 +33,14 @@ const SocialLogin = () => {
     }
 
     if(user){
-        let email = user?.email;
-
-        axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
-        .then(response => {
-            localStorage.setItem('accessToken', response.data.accessToken);
-            navigate(from, { replace: true });
-            toast.success('User Successfully Social Logged!', { duration: 2000, position: 'top-right', });
-        });
+        const email = user?.user.email;
+        const fetchLogin = async () => {
+            const {data} = await axios.post('https://rice-warehouse.herokuapp.com/login', {email});
+            localStorage.setItem('accessToken', data.accessToken);
+        }
+        fetchLogin();
+        navigate(from, { replace: true });
+        toast.success('User Successfully Social Logged!', { duration: 2000, position: 'top-right', });
     }
 
     const handleGoogleLogin = async () => {

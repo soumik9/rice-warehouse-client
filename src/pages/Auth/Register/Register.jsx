@@ -12,7 +12,6 @@ import toast from 'react-hot-toast';
 import Loading from '../../Shared/Loading/Loading';
 import '../auth.scss'
 
-
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
@@ -46,8 +45,6 @@ const Register = () => {
                 position: 'top-right',
             });
         }
-
-     
     };
 
     return (

@@ -7,7 +7,6 @@ import '../Products/products.scss'
 const Product = ({ product }) => {
 
     let navigate = useNavigate();
-    
     const { _id, img, name, price, quantity, supplierName, description } = product;
 
     const singleItemIdSend = () => {

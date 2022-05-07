@@ -1,8 +1,8 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import './chooseus.scss'
-import chooseImg from '../../assets/images/choose.jpg'
 import { BsPatchCheckFill } from 'react-icons/bs'
+import chooseImg from '../../assets/images/choose.jpg'
+import './chooseus.scss'
 
 const ChooseUs = () => {
     return (

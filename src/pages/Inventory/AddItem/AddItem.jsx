@@ -4,10 +4,10 @@ import { useForm } from 'react-hook-form';
 import { GrAddCircle } from 'react-icons/gr'
 import { RiLoginCircleLine } from 'react-icons/ri';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import './addItem.scss'
-import auth from '../../../firebase.init';
 import toast, { Toaster } from 'react-hot-toast';
+import auth from '../../../firebase.init';
 import axios from 'axios';
+import './addItem.scss'
 
 const AddItem = () => {
 
@@ -45,10 +45,8 @@ const AddItem = () => {
                             <form className="add__item-main card p-4 mt-4" onSubmit={handleSubmit(addProduct)}>
                                 <Row>
 
-
                                     <Form.Control type="text" value={0} hidden {...register('sold')}  />
                                     <Form.Control type="text" value={user?.email} hidden {...register('email')}  />
-
 
                                     <Col md={6}>
                                         <div className="mb-4">
@@ -118,7 +116,6 @@ const AddItem = () => {
 
                         </Col>
                     </Row>
-
 
                 </div>
             </Container>

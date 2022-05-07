@@ -9,37 +9,33 @@ import authBanner from '../../../assets/images/auth-banner.png'
 import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../Shared/Loading/Loading';
 import auth from '../../../firebase.init';
-import '../auth.scss'
 import axios from 'axios';
+import '../auth.scss'
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [ signInWithEmailAndPassword, user, loading, error, ] = useSignInWithEmailAndPassword(auth);
 
-
     // for re back to previous location
     let navigate = useNavigate();
     let location = useLocation();
     let from = location.state?.from?.pathname || "/";
-    
+
     if(user){ 
-        let email = user?.email;
-        axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
-        .then(response => {
-            localStorage.setItem('accessToken', response.data.accessToken);
-            navigate(from, { replace: true }) 
-            toast.success('User Successfully Logged!', { duration: 2000, position: 'top-right', });
-        });
+        navigate(from, { replace: true }) 
+        toast.success('User Successfully Logged!', { duration: 2000, position: 'top-right', });
     }
 
     // if loading this will return
     if(loading){ return <Loading></Loading>}
 
     // Login function
-    const onLoginSubmit = async (data) => {
-        const {email, password} = data;
+    const onLoginSubmit = async ({email, password}) => {
         await signInWithEmailAndPassword(email, password); 
+
+        const {data} = await axios.post('https://rice-warehouse.herokuapp.com/login', {email});
+        localStorage.setItem('accessToken', data.accessToken);
     }
 
     return (

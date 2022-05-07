@@ -30,8 +30,6 @@ const InventoryAll = () => {
         }
         getProductCount();
     }, [])
-
-
    
     return (
         <section className='allProducts'>
