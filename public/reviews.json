@@ -1,0 +1,26 @@
+[
+    {
+        "img": "https://i.ibb.co/XsPhN7S/p-1.jpg",
+        "name": "Shahida Alam",
+        "rank": "Bussiness Man",
+        "description": "Good to cook for pulav, biryani etc. Very long grains after cooking. Taste is also good. Try rice from here you will buy."
+    },
+    {
+        "img": "https://i.ibb.co/7Nq2Qqh/p-2.jpg",
+        "name": "Tamim Hasan",
+        "rank": "CEO, Tamim Enterprise",
+        "description": "Long grains. Has a flavour. After cooking resulted in fine long grained rice and my biriyani turned out very nice. Satisfied."
+    },
+    {
+        "img": "https://i.ibb.co/vhFS8YG/p-3.jpg",
+        "name": "Tanvir Malik",
+        "rank": "Bussiness Man",
+        "description": "I bought this rice before and quality was good but a couple weeks ago I bought more and this time quality also good."
+    },
+    {
+        "img": "https://i.ibb.co/0QTSPMj/p-4.jpg",
+        "name": "Radit Ahmed",
+        "rank": "CEO, Go Travel",
+        "description": "Rice grains are long and cook fluffy. It lacks any basmati fragrance. Quite good rice for ordinary pulav."
+    }
+]
