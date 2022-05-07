@@ -34,8 +34,8 @@ const Products = () => {
                     <div className="products__main mt-5">
                         <Row className='gy-5'>
                             {
-                                products.slice(0, 6).map(product => <Product
-                                    key={product.name}
+                                products.slice(0, 6).map( (product) => <Product
+                                    key={product._id}
                                     product={product}
                                 >
                                 </Product>)
