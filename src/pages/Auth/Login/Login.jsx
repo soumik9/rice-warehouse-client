@@ -10,11 +10,12 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 import Loading from '../../Shared/Loading/Loading';
 import auth from '../../../firebase.init';
 import '../auth.scss'
+import axios from 'axios';
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, } = useForm();
-    const [ signInWithEmailAndPassword, loading, error, ] = useSignInWithEmailAndPassword(auth);
+    const [ signInWithEmailAndPassword, user, loading, error, ] = useSignInWithEmailAndPassword(auth);
 
 
     // for re back to previous location
@@ -26,24 +27,20 @@ const Login = () => {
     // if loading this will return
     if(loading){ return <Loading></Loading>}
 
+    console.log(error?.code);
+
     // Login function
-    const onLoginSubmit = async (data, event) => {
+    const onLoginSubmit = async (data) => {
         const {email, password} = data;
         await signInWithEmailAndPassword(email, password); 
 
-        fetch('https://rice-warehouse.herokuapp.com/login', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ email })
-        })
-        .then(res => res.json())
-        .then(result => {
-            localStorage.setItem('accessToken', result.accessToken);
+        await axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
+        .then(response => {
+            console.log(response);
+            localStorage.setItem('accessToken', response.data.accessToken);
             navigate(from, { replace: true });
-            toast.success('User Successfully Logged!', { duration: 1000, position: 'top-right', });
-        })
+            toast.success('User Successfully Logged!', { duration: 2000, position: 'top-right', });
+        });
     }
 
     return (

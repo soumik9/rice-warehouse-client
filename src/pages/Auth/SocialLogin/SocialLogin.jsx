@@ -8,6 +8,7 @@ import './sociallogin.scss'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const SocialLogin = () => {
 
@@ -34,19 +35,13 @@ const SocialLogin = () => {
        await signInWithGoogle();
        let email = user?.email;
 
-       fetch('https://rice-warehouse.herokuapp.com/login', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify({ email })
-        })
-        .then(res => res.json())
-        .then(result => {
-            localStorage.setItem('accessToken', result.accessToken);
-            navigate(from, { replace: true });
-            toast.success('User Successfully Social Logged!', { duration: 2000, position: 'top-right', });
-        })
+       await axios.post(`https://rice-warehouse.herokuapp.com/login`, { email })
+       .then(response => {
+           console.log(response);
+           localStorage.setItem('accessToken', response.data.accessToken);
+           navigate(from, { replace: true });
+           toast.success('User Successfully Social Logged!', { duration: 2000, position: 'top-right', });
+       });
     }
 
     return (
