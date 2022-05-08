@@ -2,13 +2,19 @@ import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import useProducts from '../../../hooks/useProducts';
+import Loading from '../../../pages/Shared/Loading/Loading';
 import Product from '../Product/Product';
 import './products.scss'
 
 const Products = () => {
 
     // getting data by hooks
-    const [products] = useProducts();
+    const [products, setProducts, spinner] = useProducts();
+
+  
+
+    if(spinner){ return <Loading></Loading> }
+
 
     return (
         <section className='products'>
